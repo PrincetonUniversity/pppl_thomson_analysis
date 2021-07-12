@@ -39,6 +39,31 @@ entered:
     >> export nstxu_example_path=$(pwd)
     >> python generate_nstxu_rtmpts_tree.py nstxu_example
 
+### pulse_eval.py
+
+Contains functions for extracting signal strength parameters from time-resolved
+polychromator signals. The signal strength parameters are used as input for
+the spectral fits.
+
+- **processPulse():** Calculates a scalar strength parameter for a raw,
+  time-resolved polychromator signal according to a user specified method.
+  Currently supports peak detection, trapezoidal integration, and Gaussian
+  curve-fitting.
+
+  The keyword arguments (kwargs) generally correspond to properties specific
+  to particular diagnostic system. They will probably not need to be changed
+  from laser pulse to laser pulse or from shot to shot, but they must be
+  chosen carefully any time the function is applied to a new system.
+- **fitPulse():** Uses the Levenberg-Marquardt least-squares fitting algorithm
+  to find best-fit parameters for a user-specified curve model to a dataset.
+- **singleGaussian():** Computes the Gaussian function; for use in `fitPulse()`.
+- **doubleGaussian():** Computes a double Gaussian function (the sum of two
+  Gaussians); for use in `fitPulse()`.
+- **jacobian_singleGaussian():** Computes the Jacobian matrix associated with
+  `singleGaussian()`; for use in `fitPulse()`.
+- **jacobian_doubleGaussian():** Computes the Jacobian matrix associated with
+  `doubleGaussian()`; for use in `fitPulse()`.
+
 ### spectral_fitting.py
 
 Contains functions for fitting polychromator data to the Thomson scattering
@@ -50,25 +75,21 @@ spectrum.
   for a given electron temperature and scaling factor by interpolating the
   calibration spectra.
 
-### pulse_fitting.py
+### tree_queries.py
 
-Contains functions for extracting signal strength parameters from time-resolved
-polychromator signals. The signal strength parameters are used as input for
-the spectral fits.
+Contains miscellaneous functions that extract data from an MDSplus tree.
 
-- **processPulse():** Calculates a scalar strength parameter for a raw,
-  time-resolved polychromator signal according to a user specified method.
-  Currently supports peak detection, trapezoidal integration, and Gaussian
-  curve-fitting.
-- **fitPulse():** Uses the Levenberg-Marquardt least-squares fitting algorithm
-  to find best-fit parameters for a user-specified curve model to a dataset.
-- **singleGaussian():** Computes the Gaussian function; for use in `fitPulse()`.
-- **doubleGaussian():** Computes a double Gaussian function (the sum of two
-  Gaussians); for use in `fitPulse()`.
-- **jacobian_singleGaussian():** Computes the Jacobian matrix associated with
-  `singleGaussian()`; for use in `fitPulse()`.
-- **jacobian_doubleGaussian():** Computes the Jacobian matrix associated with
-  `doubleGaussian()`; for use in `fitPulse()`.
+At present, the functions contained within this file are specifically tailored 
+to the implementation of the real-time system on the LHD experiment. As such, 
+they may not work for other implementations in which the tree structure may not 
+be exactly the same.
+
+- **getVoltageData():** Obtains raw polychromator signals in volts for a given 
+  shot, spatial volume, and polychromator channel.
+
+- **getRawData():** Obtains raw polychromator signals in terms of the unscaled 
+  digitizer signals for a given shot, spatial volume, and polychromator channel.
+  This query is independent of the digitizer calibration data.
 
 ## Relevant publications
 

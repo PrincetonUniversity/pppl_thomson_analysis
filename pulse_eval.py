@@ -28,6 +28,11 @@ def processPulse(data, method='fit', isDouble=False, **kwargs):
     supports peak detection, direct (trapezoidal) integration, and Gaussian 
     curve-fitting.
 
+    The keyword arguments (kwargs) generally correspond to properties specific
+    to particular diagnostic system. They will probably not need to be changed
+    from laser pulse to laser pulse or from shot to shot, but they must be
+    chosen carefully any time the function is applied to a new system.
+
     Parameters
     ----------
         data: int or double array
