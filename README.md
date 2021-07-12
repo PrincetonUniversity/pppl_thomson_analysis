@@ -7,7 +7,7 @@ analysis for the real-time multi-point Thomson scattering evaulation system
 **Developers:**    K. C. Hammond, F. M. Laggner, and R. Rozenblat   \
 **Maintained by:** K. C. Hammond                                    \
 **Contact:**       khammond@pppl.gov                                \
-**Last updated:**  2021-07-05
+**Last updated:**  2021-07-12
 
 
 ## Software requirements
