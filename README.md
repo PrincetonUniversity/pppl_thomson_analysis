@@ -39,6 +39,15 @@ entered:
     >> export nstxu_example_path=$(pwd)
     >> python generate_nstxu_rtmpts_tree.py nstxu_example
 
+### polychromator.py
+
+Defines the Polychromator object class. Instances of this class store 
+experimental or idealized polychromator transmissivity spectra and can 
+generate synthetic Thomson scattering signals based on the spectra.
+
+A tutorial with example usage cases is available 
+[here](tutorials/tutorial_polychromator.md).
+
 ### pulse_eval.py
 
 Contains functions for extracting signal strength parameters from time-resolved
