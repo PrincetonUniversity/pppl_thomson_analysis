@@ -90,6 +90,9 @@ of the expected relative signal (`spec`) for the respective channel.
 
 It is also possible to add a component of random noise to each element of 
 `sigs` through the optional argument `noise_std`.
+Also, note that these synthetic signals fit perfectly to the Thomson spectrum 
+and will not contain non-ideal features such as contributions from scattered
+laser light that would need to be corrected for in experimental data.
 
 ## Evaluating the signals for spectral fitting
 
@@ -119,9 +122,6 @@ density-dependent scaling factor:
     sFit, teFit, dsFit, dteFit, chi2, _, _, _ = \
         sf.fitSpectrum(sigOK, sigValsPk, dSigValsPk, s0, te0, spec_te, spec, dspec, verbose=True)
 
-Note that these synthetic signals fit perfectly to the Thomson spectrum 
-and will not contain non-ideal features such as contributions from scattered
-laser light that would need to be corrected for in experimental data.
 The initial guess `s0` for the scaling factor may need to be adjusted depending
 on the amplitudes of the transmissivity curves and of the input signals
 themselves. Note that the input arguments `spec_te`, `spec`, and `dspec` were
